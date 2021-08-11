@@ -1,24 +1,19 @@
-# Simple demo of reading and writing the time for the PCF8523 real-time clock.
+# Simple demo of reading and writing the time for the PCF8563 real-time clock.
 # Change the if False to if True below to set the time, otherwise it will just
 # print the current date and time every second.  Notice also comments to adjust
 # for working with hardware vs. software I2C.
 
 import time
 import board
+import busio
 
-# For hardware I2C (M0 boards) use this line:
-import busio as io
-
-# Or for software I2C (ESP8266) use this line instead:
-# import bitbangio as io
-
-import adafruit_pcf8523
+import adafruit_pcf8563
 
 # Change to the appropriate I2C clock & data pins here!
-i2c_bus = io.I2C(board.SCL, board.SDA)
+i2c_bus = busio.I2C(board.SCL, board.SDA)
 
 # Create the RTC instance:
-rtc = adafruit_pcf8523.PCF8523(i2c_bus)
+rtc = adafruit_pcf8563.PCF8563(i2c_bus)
 
 # Lookup table for names of days (nicer printing).
 days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
@@ -37,8 +32,13 @@ if False:  # change to True if you want to set the time!
 # pylint: enable-msg=using-constant-test
 # pylint: enable-msg=bad-whitespace
 
+
 # Main loop:
 while True:
+    if rtc.datetime_compromised:
+        print("RTC unset")
+    else:
+        print("RTC reports time is valid")
     t = rtc.datetime
     # print(t)     # uncomment for debugging
     print(

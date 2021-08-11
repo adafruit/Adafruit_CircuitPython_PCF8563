@@ -19,14 +19,14 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name="adafruit-circuitpython-pcf8523",
+    name="adafruit-circuitpython-pcf8563",
     use_scm_version=True,
     setup_requires=["setuptools_scm"],
-    description="CircuitPython library for PCF8523 real time clock.",
+    description="CircuitPython library for PCF8563 real time clock.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     # The project's main homepage.
-    url="https://github.com/adafruit/Adafruit_CircuitPython_PCF8523",
+    url="https://github.com/adafruit/Adafruit_CircuitPython_PCF8563",
     # Author details
     author="Adafruit Industries",
     author_email="circuitpython@adafruit.com",
@@ -49,8 +49,8 @@ setup(
         "Programming Language :: Python :: 3.5",
     ],
     # What does your project relate to?
-    keywords="adafruit pcf8523 real time clock rtc breakout hardware micropython circuitpython",
+    keywords="adafruit pcf8563 real time clock rtc breakout hardware micropython circuitpython",
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    py_modules=["adafruit_pcf8523"],
+    py_modules=["adafruit_pcf8563"],
 )

@@ -1,3 +1,3 @@
 
-.. automodule:: adafruit_pcf8523
+.. automodule:: adafruit_pcf8563
    :members:

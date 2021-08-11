@@ -1,34 +1,31 @@
 
-Introduction to Adafruit's PCF8523 Real Time Clock (RTC) Library
+Introduction to Adafruit's PCF8563 Real Time Clock (RTC) Library
 ================================================================
 
-.. image:: https://readthedocs.org/projects/adafruit-circuitpython-pcf8523/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/pcf8523/en/latest/
+.. image:: https://readthedocs.org/projects/adafruit-circuitpython-pcf8563/badge/?version=latest
+    :target: https://circuitpython.readthedocs.io/projects/pcf8563/en/latest/
     :alt: Documentation Status
 
 .. image :: https://img.shields.io/discord/327254708534116352.svg
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://github.com/adafruit/Adafruit_CircuitPython_PCF8523/workflows/Build%20CI/badge.svg
-    :target: https://github.com/adafruit/Adafruit_CircuitPython_PCF8523/actions/
+.. image:: https://github.com/adafruit/Adafruit_CircuitPython_PCF8563/workflows/Build%20CI/badge.svg
+    :target: https://github.com/adafruit/Adafruit_CircuitPython_PCF8563/actions/
     :alt: Build Status
 
 This is a great battery-backed real time clock (RTC) that allows your
 microcontroller project to keep track of time even if it is reprogrammed,
 or if the power is lost. Perfect for datalogging, clock-building, time
-stamping, timers and alarms, etc. Equipped with PCF8523 RTC - it can
+stamping, timers and alarms, etc. Equipped with PCF8563 RTC - it can
 run from 3.3V or 5V power & logic!
 
-The PCF8523 is simple and inexpensive but not a high precision device.
-It may lose or gain up to two seconds a day. For a high-precision,
+The PCF8563 is simple and inexpensive but not a high precision device.
+It may lose or gain multiple seconds a day. For a high-precision,
 temperature compensated alternative, please check out the
 `DS3231 precision RTC. <https://www.adafruit.com/products/3013>`_
 If you need a DS1307 for compatibility reasons, check out our
 `DS1307 RTC breakout <https://www.adafruit.com/products/3296>`_.
-
-.. image:: _static/3295-00.jpg
-    :alt: PCF8523 Breakout Board
 
 Dependencies
 =============
@@ -42,17 +39,17 @@ This is easily achieved by downloading
 Installing from PyPI
 ====================
 On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
-PyPI <https://pypi.org/project/adafruit-circuitpython-pcf8523/>`_. To install for current user:
+PyPI <https://pypi.org/project/adafruit-circuitpython-pcf8563/>`_. To install for current user:
 
 .. code-block:: shell
 
-    pip3 install adafruit-circuitpython-pcf8523
+    pip3 install adafruit-circuitpython-pcf8563
 
 To install system-wide (this may be required in some cases):
 
 .. code-block:: shell
 
-    sudo pip3 install adafruit-circuitpython-pcf8523
+    sudo pip3 install adafruit-circuitpython-pcf8563
 
 To install in a virtual environment in your current project:
 
@@ -61,7 +58,7 @@ To install in a virtual environment in your current project:
     mkdir project-name && cd project-name
     python3 -m venv .env
     source .env/bin/activate
-    pip3 install adafruit-circuitpython-pcf8523
+    pip3 install adafruit-circuitpython-pcf8563
 
 
 Usage Notes
@@ -75,7 +72,7 @@ Of course, you must import the library to use it:
 .. code:: python
 
     import busio
-    import adafruit_pcf8523
+    import adafruit_pcf8563
     import time
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
@@ -101,7 +98,7 @@ the RTC object:
 
 .. code:: python
 
-    rtc = adafruit_pcf8523.PCF8523(i2c_bus)
+    rtc = adafruit_pcf8563.PCF8563(i2c_bus)
 
 Date and time
 -------------
@@ -145,7 +142,7 @@ Contributing
 ============
 
 Contributions are welcome! Please read our `Code of Conduct
-<https://github.com/adafruit/Adafruit_CircuitPython_PCF8523/blob/master/CODE_OF_CONDUCT.md>`_
+<https://github.com/adafruit/Adafruit_CircuitPython_PCF8563/blob/master/CODE_OF_CONDUCT.md>`_
 before contributing to help this project stay welcoming.
 
 Documentation
