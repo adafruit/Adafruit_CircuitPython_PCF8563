@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2019 Sommersoft
+# SPDX-FileCopyrightText: Copyright (c) 2021 Jeff Epler for Adafruit Industries
+#
+# SPDX-License-Identifier: Unlicense
+
 # Simple demo of reading and writing the time for the PCF8563 real-time clock.
 # Change the if False to if True below to set the time, otherwise it will just
 # print the current date and time every second.  Notice also comments to adjust
@@ -19,7 +24,6 @@ rtc = adafruit_pcf8563.PCF8563(i2c_bus)
 days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 
 
-# pylint: disable-msg=bad-whitespace
 # pylint: disable-msg=using-constant-test
 if False:  # change to True if you want to set the time!
     #                     year, mon, date, hour, min, sec, wday, yday, isdst
@@ -30,7 +34,6 @@ if False:  # change to True if you want to set the time!
     rtc.datetime = t
     print()
 # pylint: enable-msg=using-constant-test
-# pylint: enable-msg=bad-whitespace
 
 
 # Main loop:
