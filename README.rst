@@ -99,7 +99,7 @@ the RTC object:
 Date and time
 -------------
 
-To set the time, you need to set datetime` to a `time.struct_time` object:
+To set the time, you need to set ``datetime`` to a `time.struct_time` object:
 
 .. code:: python
 
