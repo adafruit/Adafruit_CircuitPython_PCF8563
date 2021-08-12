@@ -17,8 +17,7 @@ Introduction to Adafruit's PCF8563 Real Time Clock (RTC) Library
 This is a great battery-backed real time clock (RTC) that allows your
 microcontroller project to keep track of time even if it is reprogrammed,
 or if the power is lost. Perfect for datalogging, clock-building, time
-stamping, timers and alarms, etc. Equipped with PCF8563 RTC - it can
-run from 3.3V or 5V power & logic!
+stamping, timers and alarms, etc.
 
 The PCF8563 is simple and inexpensive but not a high precision device.
 It may lose or gain multiple seconds a day. For a high-precision,
@@ -84,14 +83,11 @@ SCL and SDA pins, you can:
 
     from board import *
 
-You can also use pins defined by the onboard `microcontroller` through the
-`microcontroller.pin` module.
-
 Now, to initialize the I2C bus:
 
 .. code:: python
 
-    i2c_bus = busio.I2C(SCL, SDA)
+    i2c_bus = board.I2C()
 
 Once you have created the I2C interface object, you can use it to instantiate
 the RTC object:

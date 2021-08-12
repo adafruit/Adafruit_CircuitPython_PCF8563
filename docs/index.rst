@@ -23,7 +23,7 @@ Table of Contents
 .. toctree::
     :caption: Related Products
 
-    Seeeduino `XIAO Expansion Board - Works With Adafruit QT Py <https://www.adafruit.com/product/5033>`_
+    Seeeduino XIAO Expansion Board - Works With Adafruit QT Py <https://www.adafruit.com/product/5033>
 
 .. toctree::
     :caption: Other Links
