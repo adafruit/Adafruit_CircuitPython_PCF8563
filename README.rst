@@ -3,7 +3,7 @@ Introduction to Adafruit's PCF8563 Real Time Clock (RTC) Library
 ================================================================
 
 .. image:: https://readthedocs.org/projects/adafruit-circuitpython-pcf8563/badge/?version=latest
-    :target: https://circuitpython.readthedocs.io/projects/pcf8563/en/latest/
+    :target: https://docs.circuitpython.org/projects/pcf8563/en/latest/
     :alt: Documentation Status
 
 .. image :: https://img.shields.io/discord/327254708534116352.svg
@@ -137,7 +137,7 @@ After the RTC is set, you retrieve the alarm status by reading the
 Documentation
 =============
 
-API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/pcf8563/en/latest/>`_.
+API documentation for this library can be found on `Read the Docs <https://docs.circuitpython.org/projects/pcf8563/en/latest/>`_.
 
 Contributing
 ============
