@@ -49,9 +49,18 @@ from adafruit_register import i2c_bit
 from adafruit_register import i2c_bcd_alarm
 from adafruit_register import i2c_bcd_datetime
 
+try:
+    import typing  # pylint: disable=unused-import
+    from busio import I2C
+except ImportError:
+    pass
+
 
 class PCF8563:
-    """Interface to the PCF8563 RTC."""
+    """Interface to the PCF8563 RTC.
+    
+    :param I2C i2c_bus: The I2C bus object
+    """
 
     datetime_compromised = i2c_bit.RWBit(0x2, 7)
     """True if the clock integrity is compromised."""
@@ -74,7 +83,7 @@ class PCF8563:
     alarm_status = i2c_bit.RWBit(0x01, 3)
     """True if alarm is alarming. Set to False to reset."""
 
-    def __init__(self, i2c_bus):
+    def __init__(self, i2c_bus: I2C) -> None:
         time.sleep(0.05)
         self.i2c_device = I2CDevice(i2c_bus, 0x51)
 
@@ -87,13 +96,13 @@ class PCF8563:
             i2c.write_then_readinto(buf, buf, out_end=1, in_start=1)
 
     @property
-    def datetime(self):
+    def datetime(self) -> time.struct_time:
         """Gets the current date and time or sets the current date and time then starts the
         clock."""
         return self.datetime_register
 
     @datetime.setter
-    def datetime(self, value):
+    def datetime(self, value: time.struct_time) -> None:
         # Automatically sets lost_power to false.
         self.datetime_register = value
         self.datetime_compromised = False
