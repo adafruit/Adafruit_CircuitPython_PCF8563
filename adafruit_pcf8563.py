@@ -58,7 +58,7 @@ except ImportError:
 
 class PCF8563:
     """Interface to the PCF8563 RTC.
-    
+
     :param I2C i2c_bus: The I2C bus object
     """
 
