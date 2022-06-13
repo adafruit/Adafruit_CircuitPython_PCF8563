@@ -21,7 +21,7 @@ i2c_bus = busio.I2C(board.SCL, board.SDA)
 rtc = adafruit_pcf8563.PCF8563(i2c_bus)
 
 # Lookup table for names of days (nicer printing).
-days = ("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
+days = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 
 
 # pylint: disable-msg=using-constant-test
