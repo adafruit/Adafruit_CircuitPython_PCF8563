@@ -39,7 +39,7 @@ Implementation Notes
 
 """
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_PCF8563.git"
 
 import time
