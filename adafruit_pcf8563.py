@@ -37,7 +37,7 @@ Implementation Notes
 #. Milliseconds are not supported by this RTC.
 #. The alarm does not support seconds. It will always fire on full minutes.
 #. This RTC only has a single timer. For compatibility reasons this
-   timer is nevertheless called `timerA`. This allows to replace the
+   timer is nevertheless called timerA. This allows to replace the
    PCF8563 with a PCF8523, which has two timers without changing the code.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
 
