@@ -169,6 +169,6 @@ class PCF8563:
         self.datetime_compromised = False
 
     @property
-    def lost_power(self) -> Bool:
+    def lost_power(self) -> bool:
         """Compatibility property for PCF8523-lib"""
         return self.datetime_compromised
