@@ -111,7 +111,7 @@ class PCF8563:
     TIMER_FREQ_1_60HZ = const(0b11)
     """Timer frequency of 1/60 Hz"""
 
-    timerA_value = i2c_bits.RWBits(7, 0x0F, 0)
+    timerA_value = i2c_bits.RWBits(8, 0x0F, 0)
     """ Timer value (0-255). The default is undefined.
     The total countdown duration is calcuated by
     timerA_value/timerA_frequency. For a higher precision, use higher values
