@@ -36,9 +36,8 @@ Implementation Notes
 
 #. Milliseconds are not supported by this RTC.
 #. The alarm does not support seconds. It will always fire on full minutes.
-#. This RTC only has a single timer. For compatibility reasons this
-   timer is nevertheless called timerA. This allows to replace the
-   PCF8563 with a PCF8523, which has two timers without changing the code.
+#. This RTC has a single timer. The class PCF8563_Timer implements the
+interface to timer-specfic registers.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
 
 """
@@ -90,46 +89,6 @@ class PCF8563:
 
     alarm_status = i2c_bit.RWBit(0x01, 3)
     """True if alarm is alarming. Set to False to reset."""
-
-    timerA_enabled = i2c_bit.RWBit(0x0E, 7)
-    """True if the timer is enabled. Default is False."""
-
-    timerA_frequency = i2c_bits.RWBits(2, 0x0E, 0)
-    """Timer clock frequency. Default is 1/60Hz.
-    Possible values are as shown (selection value - frequency).
-    00 - 4.096kHz
-    01 - 64Hz
-    10 -  1Hz
-    11 -  1/60Hz
-    """
-    TIMER_FREQ_4KHZ = const(0b00)
-    """Timer frequency of 4 KHz"""
-    TIMER_FREQ_64HZ = const(0b01)
-    """Timer frequency of 64 Hz"""
-    TIMER_FREQ_1HZ = const(0b10)
-    """Timer frequency of 1 Hz"""
-    TIMER_FREQ_1_60HZ = const(0b11)
-    """Timer frequency of 1/60 Hz"""
-
-    timerA_value = i2c_bits.RWBits(8, 0x0F, 0)
-    """ Timer value (0-255). The default is undefined.
-    The total countdown duration is calcuated by
-    timerA_value/timerA_frequency. For a higher precision, use higher values
-    and frequencies, e.g. for a one minute timer you could use
-    value=1, frequency=1/60Hz or value=60, frequency=1Hz. The
-    latter will give better results. See the PCF85x3 User's Manual
-    for details."""
-
-    timerA_interrupt = i2c_bit.RWBit(0x01, 0)
-    """True if the interrupt pin will assert when timerA has elapsed.
-    Defaults to False."""
-
-    timerA_status = i2c_bit.RWBit(0x01, 2)
-    """True if timer has elapsed. Set to False to reset."""
-
-    timerA_pulsed = i2c_bit.RWBit(0x01, 4)
-    """True if timerA asserts INT as a pulse. The default
-    value False asserts INT permanently."""
 
     clockout_enabled = i2c_bit.RWBit(0x0D, 7)
     """True if clockout is enabled (default). To disable clockout, set to False"""
