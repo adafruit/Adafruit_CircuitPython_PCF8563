@@ -52,7 +52,7 @@ from adafruit_register import i2c_bits
 from micropython import const
 
 try:
-    import typing  # pylint: disable=unused-import
+    from typing import Union
     from busio import I2C
 except ImportError:
     pass
