@@ -105,8 +105,8 @@ class PCF8563_Timer:  # pylint: disable=too-few-public-methods
     value False asserts INT permanently."""
 
     def __init__(self, i2c: Union[I2C, I2CDevice]) -> None:
-        time.sleep(0.05)
         if isinstance(i2c, I2CDevice):
             self.i2c_device = i2c  # reuse i2c_device (from PCF8563-instance)
         else:
+            time.sleep(0.05)
             self.i2c_device = I2CDevice(i2c, 0x51)
