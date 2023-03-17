@@ -36,8 +36,9 @@ Implementation Notes
 
 #. Milliseconds are not supported by this RTC.
 #. The alarm does not support seconds. It will always fire on full minutes.
-#. This RTC has a single timer. The class PCF8563_Timer implements the
+#. This RTC has a single timer. The class Timer implements the
 interface to timer-specfic registers.
+#. The class Clock implements the configuration of the clkout-pin.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
 
 """

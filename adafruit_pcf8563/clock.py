@@ -5,18 +5,18 @@
 # SPDX-License-Identifier: MIT
 
 """
-`timer` - PCF8563 Timer module
+`clock` - PCF8563 Clock module
 ==============================
 
-This class supports the timer of the PCF8563-based RTC in CircuitPython.
+This class supports the clkout-feature of the PCF8563-based RTC in CircuitPython.
 
-Functions are included for reading and writing registers and manipulating
-timer objects.
+Functions are included for reading and writing registers to configure
+clklout frequency.
 
 The class supports stand-alone usage. In this case, pass an i2-bus object
 to the constructor. If used together with the PCF8563 class (rtc), instantiate
 the rtc-object first and then pass the i2c_device attribute of the rtc
-to the constructor of the timer.
+to the constructor of the clock.
 
 Author(s): Bernhard Bablok
 Date: March 2023
@@ -58,51 +58,32 @@ except ImportError:
     pass
 
 
-class Timer:  # pylint: disable=too-few-public-methods
-    """Interface to the timer of the PCF8563 RTC.
+class Clock:  # pylint: disable=too-few-public-methods
+    """Interface to the clkout of the PCF8563 RTC.
 
     :param I2C i2c_bus: The I2C bus object
     """
 
-    timer_enabled = i2c_bit.RWBit(0x0E, 7)
-    """True if the timer is enabled. Default is False."""
+    clockout_enabled = i2c_bit.RWBit(0x0D, 7)
+    """True if clockout is enabled (default). To disable clockout, set to False"""
 
-    timer_frequency = i2c_bits.RWBits(2, 0x0E, 0)
-    """Timer clock frequency. Default is 1/60Hz.
+    clockout_frequency = i2c_bits.RWBits(2, 0x0D, 0)
+    """Clock output frequencies generated. Default is 32.768kHz.
     Possible values are as shown (selection value - frequency).
-    00 - 4.096kHz
-    01 - 64Hz
-    10 -  1Hz
-    11 -  1/60Hz
+    00 - 32.768khz
+    01 - 1.024kHz
+    10 - 0.032kHz (32Hz)
+    11 - 0.001kHz (1Hz)
     """
-    TIMER_FREQ_4KHZ = const(0b00)
-    """Timer frequency of 4 KHz"""
-    TIMER_FREQ_64HZ = const(0b01)
-    """Timer frequency of 64 Hz"""
-    TIMER_FREQ_1HZ = const(0b10)
-    """Timer frequency of 1 Hz"""
-    TIMER_FREQ_1_60HZ = const(0b11)
-    """Timer frequency of 1/60 Hz"""
 
-    timer_value = i2c_bits.RWBits(8, 0x0F, 0)
-    """ Timer value (0-255). The default is undefined.
-    The total countdown duration is calcuated by
-    timer_value/timer_frequency. For a higher precision, use higher values
-    and frequencies, e.g. for a one minute timer you could use
-    value=1, frequency=1/60Hz or value=60, frequency=1Hz. The
-    latter will give better results. See the PCF85x3 User's Manual
-    for details."""
-
-    timer_interrupt = i2c_bit.RWBit(0x01, 0)
-    """True if the interrupt pin will assert when timer has elapsed.
-    Defaults to False."""
-
-    timer_status = i2c_bit.RWBit(0x01, 2)
-    """True if timer has elapsed. Set to False to reset."""
-
-    timer_pulsed = i2c_bit.RWBit(0x01, 4)
-    """True if timer asserts INT as a pulse. The default
-    value False asserts INT permanently."""
+    CLOCKOUT_FREQ_32KHZ = const(0b00)
+    """Clock frequency of 32 KHz"""
+    CLOCKOUT_FREQ_1KHZ = const(0b01)
+    """Clock frequency of  4 KHz"""
+    CLOCKOUT_FREQ_32HZ = const(0b10)
+    """Clock frequency of 32 Hz"""
+    CLOCKOUT_FREQ_1HZ = const(0b11)
+    """Clock frequency of 1 Hz"""
 
     def __init__(self, i2c: Union[I2C, I2CDevice]) -> None:
         if isinstance(i2c, I2CDevice):
