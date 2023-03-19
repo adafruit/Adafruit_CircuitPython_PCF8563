@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-`adafruit_pcf8563` - PCF8563 Real Time Clock module
+`pcf8563` - PCF8563 Real Time Clock module
 ====================================================
 
 This library supports the use of the PCF8563-based RTC in CircuitPython. It
@@ -36,8 +36,7 @@ Implementation Notes
 
 #. Milliseconds are not supported by this RTC.
 #. The alarm does not support seconds. It will always fire on full minutes.
-#. This RTC has a single timer. The class Timer implements the
-interface to timer-specfic registers.
+#. This RTC has a single timer. The class Timer implements the interface to timer-specfic registers.
 #. The class Clock implements the configuration of the clkout-pin.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
 """
