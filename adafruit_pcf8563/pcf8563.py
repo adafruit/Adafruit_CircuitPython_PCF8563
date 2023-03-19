@@ -40,7 +40,6 @@ Implementation Notes
 interface to timer-specfic registers.
 #. The class Clock implements the configuration of the clkout-pin.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
-
 """
 
 __version__ = "0.0.0+auto.0"

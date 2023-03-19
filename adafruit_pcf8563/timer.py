@@ -38,7 +38,6 @@ Implementation Notes
 **Notes:**
 
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
-
 """
 
 __version__ = "0.0.0+auto.0"
