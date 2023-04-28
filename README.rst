@@ -75,7 +75,7 @@ Of course, you must import the library to use it:
 .. code:: python
 
     import busio
-    import adafruit_pcf8563
+    from adafruit_pcf8563.pcf8563 import PCF8563
     import time
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
@@ -98,7 +98,7 @@ the RTC object:
 
 .. code:: python
 
-    rtc = adafruit_pcf8563.PCF8563(i2c_bus)
+    rtc = PCF8563(i2c_bus)
 
 Date and time
 -------------

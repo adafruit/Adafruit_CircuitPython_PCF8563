@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-`adafruit_pcf8563` - PCF8563 Real Time Clock module
+`pcf8563` - PCF8563 Real Time Clock module
 ====================================================
 
 This library supports the use of the PCF8563-based RTC in CircuitPython. It
@@ -35,8 +35,10 @@ Implementation Notes
 **Notes:**
 
 #. Milliseconds are not supported by this RTC.
+#. The alarm does not support seconds. It will always fire on full minutes.
+#. This RTC has a single timer. The class Timer implements the interface to timer-specfic registers.
+#. The class Clock implements the configuration of the clkout-pin.
 #. Datasheet: http://cache.nxp.com/documents/data_sheet/PCF8563.pdf
-
 """
 
 __version__ = "0.0.0+auto.0"
@@ -75,7 +77,9 @@ class PCF8563:
     alarm = i2c_bcd_alarm.BCDAlarmTimeRegister(
         0x09, has_seconds=False, weekday_shared=False, weekday_start=0
     )
-    """Alarm time for the alarm."""
+    """Alarm time for the alarm. Note that the value of the seconds-fields
+    is ignored, i.e. alarms only fire at full minutes. For short-term
+    alarms, use a timer instead."""
 
     alarm_interrupt = i2c_bit.RWBit(0x01, 1)
     """True if the interrupt pin will output when alarm is alarming."""
@@ -83,17 +87,12 @@ class PCF8563:
     alarm_status = i2c_bit.RWBit(0x01, 3)
     """True if alarm is alarming. Set to False to reset."""
 
+    clockout_enabled = i2c_bit.RWBit(0x0D, 7)
+    """True if clockout is enabled (default). To disable clockout, set to False"""
+
     def __init__(self, i2c_bus: I2C) -> None:
         time.sleep(0.05)
         self.i2c_device = I2CDevice(i2c_bus, 0x51)
-
-        # Try and verify this is the RTC we expect by checking the timer B
-        # frequency control bits which are 1 on reset and shouldn't ever be
-        # changed.
-        buf = bytearray(2)
-        buf[0] = 0x12
-        with self.i2c_device as i2c:
-            i2c.write_then_readinto(buf, buf, out_end=1, in_start=1)
 
     @property
     def datetime(self) -> time.struct_time:
@@ -106,3 +105,8 @@ class PCF8563:
         # Automatically sets lost_power to false.
         self.datetime_register = value
         self.datetime_compromised = False
+
+    @property
+    def lost_power(self) -> bool:
+        """Compatibility property for PCF8523-lib"""
+        return self.datetime_compromised

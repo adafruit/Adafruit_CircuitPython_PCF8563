@@ -12,13 +12,13 @@ import time
 import board
 import busio
 
-import adafruit_pcf8563
+from adafruit_pcf8563.pcf8563 import PCF8563
 
 # Change to the appropriate I2C clock & data pins here!
 i2c_bus = busio.I2C(board.SCL, board.SDA)
 
 # Create the RTC instance:
-rtc = adafruit_pcf8563.PCF8563(i2c_bus)
+rtc = PCF8563(i2c_bus)
 
 # Lookup table for names of days (nicer printing).
 days = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
