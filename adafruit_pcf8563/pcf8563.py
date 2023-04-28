@@ -92,24 +92,6 @@ class PCF8563:
     clockout_enabled = i2c_bit.RWBit(0x0D, 7)
     """True if clockout is enabled (default). To disable clockout, set to False"""
 
-    clockout_frequency = i2c_bits.RWBits(2, 0x0D, 0)
-    """Clock output frequencies generated. Default is 32.768kHz.
-    Possible values are as shown (selection value - frequency).
-    00 - 32.768khz
-    01 - 1.024kHz
-    10 - 0.032kHz (32Hz)
-    11 - 0.001kHz (1Hz)
-    """
-
-    CLOCKOUT_FREQ_32KHZ = const(0b00)
-    """Clock frequency of 32 KHz"""
-    CLOCKOUT_FREQ_1KHZ = const(0b01)
-    """Clock frequency of  4 KHz"""
-    CLOCKOUT_FREQ_32HZ = const(0b10)
-    """Clock frequency of 32 Hz"""
-    CLOCKOUT_FREQ_1HZ = const(0b11)
-    """Clock frequency of 1 Hz"""
-
     def __init__(self, i2c_bus: I2C) -> None:
         time.sleep(0.05)
         self.i2c_device = I2CDevice(i2c_bus, 0x51)
