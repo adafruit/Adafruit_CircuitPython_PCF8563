@@ -122,7 +122,7 @@ html_static_path = ["_static"]
 html_favicon = "_static/favicon.ico"
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'AdafruitsPCF8563RTCLibrarydoc'
+htmlhelp_basename = "AdafruitsPCF8563RTCLibrarydoc"
 
 # -- Options for LaTeX output ---------------------------------------------
 
