@@ -47,12 +47,11 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_PCF8563.git"
 import time
 
 from adafruit_bus_device.i2c_device import I2CDevice
-from adafruit_register import i2c_bit
-from adafruit_register import i2c_bcd_alarm
-from adafruit_register import i2c_bcd_datetime
+from adafruit_register import i2c_bcd_alarm, i2c_bcd_datetime, i2c_bit
 
 try:
-    import typing  # pylint: disable=unused-import
+    import typing
+
     from busio import I2C
 except ImportError:
     pass
